@@ -1,0 +1,48 @@
+openapi: 3.0.1
+info:
+  title: Currency Conversion API
+  version: 1.0.0
+paths:
+  /convert:
+    post:
+      summary: Convert currency
+      description: Converts an amount from one currency to another
+      operationId: convert
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConversionRequest'
+      responses:
+        '200':
+          description: Successful conversion
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConversionResponse'
+
+components:
+  schemas:
+    ConversionRequest:
+      type: object
+      properties:
+        amount:
+          type: number
+        sourceCurrency:
+          type: string
+        targetCurrency:
+          type: string
+      required:
+        - amount
+        - sourceCurrency
+        - targetCurrency
+    ConversionResponse:
+      type: object
+      properties:
+        convertedAmount:
+          type: number
+        sourceCurrency:
+          type: string
+        targetCurrency:
+          type: string
