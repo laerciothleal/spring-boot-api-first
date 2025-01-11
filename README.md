@@ -15,10 +15,6 @@ Este projeto é um exemplo de aplicação utilizando o conceito **API First** co
 - **Documentação Interativa**: Swagger UI para explorar e testar a API.
 
 
-## Pré-requisitos
-- **JDK 17+**
-- **Maven 3.8+**
-
 ## Como Executar
 1. Clone o repositório:
    ```bash
@@ -26,11 +22,35 @@ Este projeto é um exemplo de aplicação utilizando o conceito **API First** co
    cd spring-boot-api-first
    ```
 
-2. Compile e execute a aplicação:
+2. **Construir e Executar a Aplicação**
+   
+   2.1. Compile e execute a aplicação:
+   
    ```bash
    mvn clean compile
    mvn spring-boot:run
    ```
+
+   2.2 Via docker:
+
+   Utilize o seguinte arquivo `docker-compose.yml`:
+
+   ```yaml
+   services:
+     backend:
+       build:
+         dockerfile: ./Dockerfile
+       ports:
+         - "8080:8080"
+       volumes:
+         - .m2:/root/.m2
+       stdin_open: true
+       tty: true
+   ```
+   - **Comandos para subir o ambiente**:
+     ```bash
+     docker-compose up --build
+     ```
 
 3. Acesse a aplicação:
    - **Swagger UI**: [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
